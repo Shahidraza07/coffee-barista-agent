@@ -1,5 +1,11 @@
 # app.py
+import os
 import streamlit as st
+
+# Streamlit secrets se API key ko environment variable mein set karna
+if "GOOGLE_API_KEY" in st.secrets:
+    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+    
 import json
 
 # Set page config for a premium look
