@@ -2,19 +2,29 @@
 import os
 import streamlit as st
 
-# Streamlit secrets se API key ko environment variable mein set karna
-if "GOOGLE_API_KEY" in st.secrets:
-    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
-    
-import json
-
-# Set page config for a premium look
+# 1. Sabse pehle page config set karein (Yeh sabse upar hona chahiye)
 st.set_page_config(
     page_title="☕ Coffee Shop - Barista Bot",
     page_icon="☕",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# 2. Toolbar / GitHub icons ko hide karne ki styling
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+# 3. Streamlit secrets se API key ko environment variable mein set karna
+if "GOOGLE_API_KEY" in st.secrets:
+    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+
+import json
 
 # Custom CSS to make the header sticky (adapts to light/dark themes)
 st.markdown("""
